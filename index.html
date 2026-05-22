@@ -115,7 +115,7 @@
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0a0a0f;
@@ -166,10 +166,11 @@
   }
 
   .logo-area h1 {
-    font-family: 'Black Han Sans', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
     font-size: clamp(2.8rem, 6vw, 5rem);
     line-height: 0.9;
-    letter-spacing: -2px;
+    letter-spacing: -3px;
     color: var(--text);
   }
 
@@ -630,6 +631,7 @@
   }
 
   /* 하단 고정 광고 배너 */
+  /* 하단 고정 광고 배너 */
   .sticky-ad {
     position: fixed;
     bottom: 0;
@@ -639,12 +641,13 @@
     background: linear-gradient(135deg, #1a1a26, #111118);
     border-top: 1px solid rgba(255, 140, 0, 0.35);
     box-shadow: 0 -8px 32px rgba(0,0,0,0.5);
-    padding: 10px 24px;
+    padding: 8px 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 14px;
+    gap: 12px;
     animation: slideUp 0.5s ease;
+    min-height: 70px;
   }
 
   @keyframes slideUp {
@@ -663,66 +666,23 @@
     border: 1px solid var(--border);
     padding: 2px 6px;
     border-radius: 3px;
+    align-self: flex-start;
+    margin-top: 4px;
   }
 
-  .ad-content {
+  /* 쿠팡 캐러셀 래퍼 */
+  .ad-carousel-wrap {
+    flex: 1;
+    overflow: hidden;
+    max-width: 100%;
     display: flex;
     align-items: center;
-    gap: 10px;
-    flex: 1;
-    min-width: 0;
-    text-decoration: none;
-    color: inherit;
+    justify-content: center;
   }
 
-  .ad-icon {
-    font-size: 1.3rem;
-    flex-shrink: 0;
-  }
-
-  .ad-text {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .ad-title {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .ad-sub {
-    font-size: 0.72rem;
-    color: var(--muted);
-    margin-top: 1px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .ad-cta {
-    background: var(--accent2);
-    color: #fff;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 700;
-    border: none;
-    border-radius: 6px;
-    padding: 7px 14px;
-    cursor: pointer;
-    white-space: nowrap;
-    flex-shrink: 0;
-    text-decoration: none;
-    display: inline-block;
-    transition: background 0.2s, transform 0.15s;
-  }
-
-  .ad-cta:hover {
-    background: #ffaa33;
-    transform: scale(1.04);
+  .ad-carousel-wrap iframe,
+  .ad-carousel-wrap > div {
+    max-width: 100% !important;
   }
 
   .ad-close {
@@ -736,17 +696,18 @@
     flex-shrink: 0;
     line-height: 1;
     transition: color 0.2s;
+    align-self: flex-start;
+    margin-top: 4px;
   }
 
   .ad-close:hover { color: var(--text); }
 
-  /* 광고 배너 높이만큼 페이지 하단 여백 */
-  body.has-ad footer { margin-bottom: 62px; }
+  /* 광고 높이만큼 하단 여백 */
+  body.has-ad footer { margin-bottom: 86px; }
 
   @media (max-width: 600px) {
-    .sticky-ad { padding: 8px 14px; gap: 8px; }
-    .ad-sub { display: none; }
-    .ad-cta { padding: 6px 10px; font-size: 0.74rem; }
+    .sticky-ad { padding: 6px 10px; gap: 8px; min-height: 60px; }
+    body.has-ad footer { margin-bottom: 76px; }
   }
 </style>
 </head>
@@ -877,588 +838,225 @@
 
 <footer>
   <p>구독탈출 — 비용 낭비 없는 디지털 생활을 위해</p>
-  <a class="contribute-link" href="#">+ 서비스 추가 제안</a>
+  <a class="contribute-link" href="mailto:kikihouse_k@naver.com?subject=서비스%20추가%20제안&body=서비스명%3A%20%0A해지%20URL%3A%20%0A추가%20설명%3A%20">+ 서비스 추가 제안</a>
 </footer>
 
 <!-- 하단 고정 쿠팡파트너스 광고 -->
 <div class="sticky-ad" id="stickyAd">
   <span class="ad-label">AD</span>
-  <!-- 아래 href를 본인의 쿠팡파트너스 링크로 교체하세요 -->
-  <a class="ad-content" href="https://link.coupang.com/YOUR_PARTNERS_LINK" target="_blank" rel="noopener sponsored">
-    <span class="ad-icon">🛒</span>
-    <div class="ad-text">
-      <div class="ad-title">쿠팡 로켓와우 — 지금 가입하면 첫 달 무료</div>
-      <div class="ad-sub">무료배송 · 무료반품 · 쿠팡이츠 할인까지, 로켓배송 혜택 총집합</div>
-    </div>
-  </a>
-  <a class="ad-cta" href="https://link.coupang.com/YOUR_PARTNERS_LINK" target="_blank" rel="noopener sponsored">혜택 보기 →</a>
+  <div class="ad-carousel-wrap" id="coupangAdWrap"></div>
   <button class="ad-close" id="adClose" title="닫기">✕</button>
 </div>
+<script>
+(function() {
+  var s = document.createElement('script');
+  s.src = 'https://ads-partners.coupang.com/g.js';
+  s.onload = function() {
+    new PartnersCoupang.G({
+      "id": 739808,
+      "trackingCode": "AF6132783",
+      "subId": null,
+      "template": "carousel",
+      "width": "680",
+      "height": "60"
+    });
+  };
+  document.getElementById('coupangAdWrap').appendChild(s);
+})();
+</script>
 
 <script>
 const services = [
   // 스트리밍
-  {
-    name: "Netflix",
-    icon: "🎬",
-    cat: "streaming",
-    desc: "설정 → 계정 → 멤버십 해지에서 해지 가능. 해지 후 결제 기간 종료 시까지 시청 가능.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.netflix.com/account/membership"
-  },
-  {
-    name: "왓챠",
-    icon: "📺",
-    cat: "streaming",
-    desc: "앱/웹에서 프로필 → 구독 관리 → 구독 해지. 월말까지 서비스 유지.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://watcha.com/settings/billing"
-  },
-  {
-    name: "웨이브 (Wavve)",
-    icon: "🌊",
-    cat: "streaming",
-    desc: "마이페이지 → 이용권 관리 → 이용권 해지. 잔여 기간 이용 가능.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.wavve.com/member/coupon"
-  },
-  {
-    name: "티빙 (Tving)",
-    icon: "📱",
-    cat: "streaming",
-    desc: "마이페이지 → 이용권 → 자동결제 해지. 통신사 제휴 시 해당 앱에서 해지 필요.",
-    steps: 4,
-    difficulty: "medium",
-    url: "https://www.tving.com/user/mypage/ticket"
-  },
-  {
-    name: "Disney+",
-    icon: "🏰",
-    cat: "streaming",
-    desc: "계정 → 구독 → 구독 해지. 결제 주기 종료 시까지 이용 가능.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.disneyplus.com/account/subscription"
-  },
-  {
-    name: "Apple TV+",
-    icon: "🍎",
-    cat: "streaming",
-    desc: "설정(iOS) 또는 iTunes → 구독 항목에서 해지. 기기에서만 해지 가능.",
-    steps: 4,
-    difficulty: "medium",
-    url: "https://support.apple.com/ko-kr/118428"
-  },
-  {
-    name: "Coupang Play",
-    icon: "🐻",
-    cat: "streaming",
-    desc: "쿠팡 앱 → 마이쿠팡 → 쿠팡플레이 → 구독 해지.",
-    steps: 4,
-    difficulty: "easy",
-    url: "https://www.coupangplay.com/settings"
-  },
-  {
-    name: "시즌 (Seezn)",
-    icon: "📡",
-    cat: "streaming",
-    desc: "마이페이지 → 이용권 관리에서 구독 해지. 잔여 이용 기간 유지.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.seezn.com/mypage"
-  },
+  { name:"Netflix", icon:"🎬", cat:"streaming", steps:3, difficulty:"easy",
+    desc:"계정 → 멤버십 해지 클릭. 해지 후 결제 기간 끝날 때까지 시청 가능. 앱 삭제는 해지 아님!",
+    url:"https://help.netflix.com/ko/node/407" },
+  { name:"왓챠", icon:"📺", cat:"streaming", steps:3, difficulty:"easy",
+    desc:"오른쪽 상단 프로필 → 구독 정보 → 하단 '해지하기' 클릭. 월말까지 서비스 유지.",
+    url:"https://help.watcha.com/hc/ko/categories/4403928691353" },
+  { name:"웨이브 (Wavve)", icon:"🌊", cat:"streaming", steps:3, difficulty:"easy",
+    desc:"웨이브 앱/웹 → 마이페이지 → 이용권 관리 → 이용권 해지. 잔여 기간 이용 가능.",
+    url:"https://cs.wavve.com/entry/list" },
+  { name:"티빙 (Tving)", icon:"📱", cat:"streaming", steps:4, difficulty:"medium",
+    desc:"마이페이지 → 이용권 → 자동결제 해지. 통신사 제휴 이용권은 해당 통신사 앱에서 별도 해지.",
+    url:"https://cs.tving.com/entry/list" },
+  { name:"Disney+", icon:"🏰", cat:"streaming", steps:3, difficulty:"easy",
+    desc:"계정 → 구독 취소. 결제 주기 종료 시까지 이용 가능.",
+    url:"https://help.disneyplus.com/ko/article/disneyplus-cancel" },
+  { name:"Apple TV+", icon:"🍎", cat:"streaming", steps:4, difficulty:"medium",
+    desc:"설정 → Apple ID → 구독 항목에서 Apple TV+ 해지. iOS 기기 또는 iTunes에서만 가능.",
+    url:"https://support.apple.com/ko-kr/118428" },
+  { name:"Coupang Play", icon:"🐻", cat:"streaming", steps:4, difficulty:"easy",
+    desc:"쿠팡 앱 → 마이쿠팡 → 쿠팡플레이 → 구독 해지.",
+    url:"https://help.coupangplay.com/hc/ko" },
+  { name:"YouTube Premium", icon:"▶️", cat:"streaming", steps:3, difficulty:"easy",
+    desc:"유튜브 → 프로필 → 유료 멤버십 → 멤버십 해지. 해지 후 광고 재개.",
+    url:"https://support.google.com/youtube/answer/6308278?hl=ko" },
 
   // 음악
-  {
-    name: "멜론",
-    icon: "🍈",
-    cat: "music",
-    desc: "My멜론 → 이용권/결제 → 자동결제 해지. 통신사 제휴권은 해당 통신사 앱에서.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.melon.com/mymusic/ticket/mymusicticketlist_inform.htm"
-  },
-  {
-    name: "지니뮤직",
-    icon: "🧞",
-    cat: "music",
-    desc: "MY → 이용권 관리 → 자동결제 해지. KT 결합상품 이용자는 KT에서 해지.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.genie.co.kr/mypage"
-  },
-  {
-    name: "FLO",
-    icon: "🎶",
-    cat: "music",
-    desc: "MY FLO → 이용권 관리 → 이용권 해지. SK 제휴권은 T월드에서 해지.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.music-flo.com/mypage"
-  },
-  {
-    name: "Spotify",
-    icon: "🎧",
-    cat: "music",
-    desc: "계정 → 구독 → 프리미엄 해지. 해지 후 무료 플랜으로 전환됨.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.spotify.com/account/subscription/cancel"
-  },
-  {
-    name: "Apple Music",
-    icon: "🍎",
-    cat: "music",
-    desc: "설정 → Apple ID → 구독 → Apple Music 해지. iOS 기기에서만 가능.",
-    steps: 4,
-    difficulty: "medium",
-    url: "https://support.apple.com/ko-kr/118428"
-  },
-  {
-    name: "YouTube Music",
-    icon: "▶️",
-    cat: "music",
-    desc: "YouTube Premium 해지 시 함께 해지됨. 구글 계정 구독 관리에서 해지.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.youtube.com/paid_memberships"
-  },
+  { name:"멜론", icon:"🍈", cat:"music", steps:3, difficulty:"easy",
+    desc:"My멜론 → 이용권/결제 → 자동결제 해지. 통신사 제휴권은 해당 통신사 앱에서 해지.",
+    url:"https://faqs2.melon.com/customer/faq/informFaq.htm?faqId=2212" },
+  { name:"지니뮤직", icon:"🧞", cat:"music", steps:4, difficulty:"easy",
+    desc:"더보기 → 내정보 → 맨 하단 정기결제 설정 → 해지신청. KT 결합상품은 KT에서 해지.",
+    url:"https://www.genie.co.kr/support/faq" },
+  { name:"FLO", icon:"🎶", cat:"music", steps:4, difficulty:"medium",
+    desc:"설정 → 현재 보유 이용권 → 이용권 상세보기 → 해지 신청. SK 제휴권은 T월드에서 해지.",
+    url:"https://www.music-flo.com/docs/cms/faq" },
+  { name:"Spotify", icon:"🎧", cat:"music", steps:3, difficulty:"easy",
+    desc:"계정 → 구독 → 프리미엄 해지. 해지 후 무료 플랜으로 전환됨.",
+    url:"https://support.spotify.com/kr/article/cancel-premium-individual/" },
+  { name:"Apple Music", icon:"🍎", cat:"music", steps:4, difficulty:"medium",
+    desc:"설정 → Apple ID → 구독 → Apple Music 해지. iOS 기기에서만 가능.",
+    url:"https://support.apple.com/ko-kr/118428" },
+  { name:"YouTube Music", icon:"🎵", cat:"music", steps:3, difficulty:"easy",
+    desc:"YouTube Premium 해지 시 함께 해지됨. 구글 계정 구독 관리에서 해지.",
+    url:"https://support.google.com/youtube/answer/6308278?hl=ko" },
 
   // AI
-  {
-    name: "ChatGPT Plus",
-    icon: "🤖",
-    cat: "ai",
-    desc: "프로필 → My plan → Cancel plan. 해지 후 해당 월 말까지 Plus 유지.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://chat.openai.com/#pricing"
-  },
-  {
-    name: "Claude Pro",
-    icon: "🧠",
-    cat: "ai",
-    desc: "Settings → Billing → Cancel subscription. 해지 후 기간 만료까지 이용 가능.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://claude.ai/settings"
-  },
-  {
-    name: "Midjourney",
-    icon: "🎨",
-    cat: "ai",
-    desc: "midjourney.com → 관리 → 구독 취소. 또는 Discord에서 /subscribe 명령어 사용.",
-    steps: 3,
-    difficulty: "medium",
-    url: "https://www.midjourney.com/account"
-  },
-  {
-    name: "Perplexity Pro",
-    icon: "🔮",
-    cat: "ai",
-    desc: "Settings → Subscription → Cancel Plan. 해지 즉시 또는 기간 만료 시 전환.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.perplexity.ai/settings/account"
-  },
-  {
-    name: "Notion AI",
-    icon: "📝",
-    cat: "ai",
-    desc: "Settings → Plans → AI 애드온 → Cancel. 워크스페이스 소유자 권한 필요.",
-    steps: 4,
-    difficulty: "medium",
-    url: "https://www.notion.so/billing"
-  },
-  {
-    name: "Copilot Pro",
-    icon: "✈️",
-    cat: "ai",
-    desc: "Microsoft 계정 → 서비스 및 구독 → Copilot Pro 해지. 해당 월 말까지 유지.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://account.microsoft.com/services"
-  },
+  { name:"ChatGPT Plus", icon:"🤖", cat:"ai", steps:3, difficulty:"easy",
+    desc:"프로필 → My plan → Cancel plan. 해지 후 해당 월 말까지 Plus 유지.",
+    url:"https://help.openai.com/en/articles/7232529-how-do-i-cancel-my-chatgpt-plus-subscription" },
+  { name:"Claude Pro", icon:"🧠", cat:"ai", steps:3, difficulty:"easy",
+    desc:"Settings → Billing → Cancel subscription. 해지 후 기간 만료까지 이용 가능.",
+    url:"https://support.anthropic.com/ko/articles/8250421" },
+  { name:"Midjourney", icon:"🎨", cat:"ai", steps:3, difficulty:"medium",
+    desc:"midjourney.com 계정 → 구독 취소. 또는 Discord에서 /subscribe 명령어 사용.",
+    url:"https://docs.midjourney.com/docs/plans" },
+  { name:"Perplexity Pro", icon:"🔮", cat:"ai", steps:3, difficulty:"easy",
+    desc:"Settings → Account → Cancel Plan. 해지 후 무료 플랜으로 전환.",
+    url:"https://www.perplexity.ai/hub/faq/how-do-i-cancel-my-pro-subscription" },
+  { name:"Notion AI", icon:"📝", cat:"ai", steps:4, difficulty:"medium",
+    desc:"Settings → Plans → AI 애드온 취소. 워크스페이스 소유자 권한 필요.",
+    url:"https://www.notion.so/help/billing-and-plans" },
+  { name:"Copilot Pro", icon:"✈️", cat:"ai", steps:3, difficulty:"easy",
+    desc:"Microsoft 계정 → 서비스 및 구독 → Copilot Pro 취소. 해당 월 말까지 유지.",
+    url:"https://support.microsoft.com/ko-kr/topic/copilot-pro-%EA%B5%AC%EB%8F%85-%EC%B7%A8%EC%86%8C-03c50bbd-e4e6-4f3e-a571-d9ff0d39b2df" },
 
   // 소프트웨어
-  {
-    name: "Adobe Creative Cloud",
-    icon: "🖌️",
-    cat: "software",
-    desc: "연간 구독 해지 시 위약금 발생 주의! 계정 → 구독 → 구독 취소.",
-    steps: 5,
-    difficulty: "hard",
-    url: "https://account.adobe.com/plans"
-  },
-  {
-    name: "Microsoft 365",
-    icon: "📊",
-    cat: "software",
-    desc: "Microsoft 계정 → 서비스 및 구독 → 구독 취소. 해지 후 앱은 읽기 전용.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://account.microsoft.com/services"
-  },
-  {
-    name: "Notion",
-    icon: "📒",
-    cat: "software",
-    desc: "Settings → Plans → Downgrade. 무료 플랜은 블록 수 제한 있음.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.notion.so/billing"
-  },
-  {
-    name: "Canva Pro",
-    icon: "🎭",
-    cat: "software",
-    desc: "계정 설정 → 청구 및 플랜 → 구독 취소. 해지 후 무료 버전으로 전환.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.canva.com/settings/billing"
-  },
-  {
-    name: "Figma",
-    icon: "🖼️",
-    cat: "software",
-    desc: "설정 → 청구 → 구독 취소. 팀 결제 관리자만 해지 가능.",
-    steps: 3,
-    difficulty: "medium",
-    url: "https://www.figma.com/settings#billing"
-  },
-  {
-    name: "Dropbox",
-    icon: "📦",
-    cat: "cloud",
-    desc: "계정 설정 → 플랜 → 무료로 다운그레이드. 파일 초과 시 삭제 대상 발생 주의.",
-    steps: 4,
-    difficulty: "medium",
-    url: "https://www.dropbox.com/account/plan"
-  },
-  {
-    name: "Google One",
-    icon: "☁️",
-    cat: "cloud",
-    desc: "Google One 앱 또는 웹 → 설정 → 구독 취소. 15GB 초과 시 일부 기능 제한.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://one.google.com/u/0/storage"
-  },
-  {
-    name: "iCloud+",
-    icon: "🌤️",
-    cat: "cloud",
-    desc: "설정 → Apple ID → iCloud → iCloud+ 관리 → 저장 공간 플랜 변경.",
-    steps: 4,
-    difficulty: "medium",
-    url: "https://support.apple.com/ko-kr/108922"
-  },
+  { name:"Adobe Creative Cloud", icon:"🖌️", cat:"software", steps:5, difficulty:"hard",
+    desc:"⚠️ 연간 구독 중도 해지 시 위약금 발생! 계정 → 구독 → 구독 취소 전 약관 반드시 확인.",
+    url:"https://helpx.adobe.com/kr/manage-account/using/cancel-subscription.html" },
+  { name:"Microsoft 365", icon:"📊", cat:"software", steps:3, difficulty:"easy",
+    desc:"Microsoft 계정 → 서비스 및 구독 → 구독 취소. 해지 후 앱은 읽기 전용 전환.",
+    url:"https://support.microsoft.com/ko-kr/office/microsoft-365-%EA%B5%AC%EB%8F%85-%EC%B7%A8%EC%86%8C-0d90eb30-2a37-4f05-b6bd-4eced2a23a75" },
+  { name:"Canva Pro", icon:"🎭", cat:"software", steps:3, difficulty:"easy",
+    desc:"계정 설정 → 청구 및 플랜 → 구독 취소. 해지 후 무료 버전으로 전환.",
+    url:"https://www.canva.com/help/cancel-subscription/" },
+  { name:"Figma", icon:"🖼️", cat:"software", steps:3, difficulty:"medium",
+    desc:"설정 → 청구 → 구독 취소. 팀 결제 관리자만 해지 가능.",
+    url:"https://help.figma.com/hc/ko/articles/360040328273" },
+
+  // 클라우드
+  { name:"Dropbox", icon:"📦", cat:"cloud", steps:4, difficulty:"medium",
+    desc:"계정 설정 → 플랜 → 무료로 다운그레이드. 파일 용량 초과 시 일부 기능 제한.",
+    url:"https://help.dropbox.com/ko-kr/billing/cancel-dropbox-plus" },
+  { name:"Google One", icon:"☁️", cat:"cloud", steps:3, difficulty:"easy",
+    desc:"Google One 앱/웹 → 설정 → 구독 취소. 15GB 초과 시 업로드 제한.",
+    url:"https://support.google.com/googleone/answer/9083244?hl=ko" },
+  { name:"iCloud+", icon:"🌤️", cat:"cloud", steps:4, difficulty:"medium",
+    desc:"설정 → Apple ID → iCloud → 저장 공간 플랜 변경 → 무료로 다운그레이드.",
+    url:"https://support.apple.com/ko-kr/108922" },
 
   // 쇼핑
-  {
-    name: "쿠팡 로켓와우",
-    icon: "🚀",
-    cat: "shopping",
-    desc: "쿠팡 앱 → 마이쿠팡 → 로켓와우 → 회원 해지. 이미 결제된 달은 유지.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.coupang.com/vp/products"
-  },
-  {
-    name: "네이버 플러스 멤버십",
-    icon: "🟢",
-    cat: "shopping",
-    desc: "네이버 앱 → 내정보 → 구독 → 네이버 플러스 → 해지. 당월 혜택은 유지.",
-    steps: 4,
-    difficulty: "easy",
-    url: "https://new-m.pay.naver.com/membership"
-  },
-  {
-    name: "카카오 이모티콘 플러스",
-    icon: "💬",
-    cat: "shopping",
-    desc: "카카오톡 → 더보기 → 이모티콘 → 이모티콘 플러스 → 구독 해지.",
-    steps: 4,
-    difficulty: "easy",
-    url: "https://emoticon.kakao.com/store/plus"
-  },
-  {
-    name: "11번가 우주패스",
-    icon: "🌌",
-    cat: "shopping",
-    desc: "마이11번가 → 우주패스 → 이용권 해지. SK텔레콤 결합상품 별도 확인 필요.",
-    steps: 3,
-    difficulty: "medium",
-    url: "https://www.11st.co.kr/products/universe-pass"
-  },
+  { name:"쿠팡 로켓와우", icon:"🚀", cat:"shopping", steps:3, difficulty:"easy",
+    desc:"쿠팡 앱 → 마이쿠팡 → 로켓와우 → 회원 해지. 이미 결제된 달은 계속 이용 가능.",
+    url:"https://cs.coupang.com/hc/ko/articles/900004909543" },
+  { name:"네이버 플러스 멤버십", icon:"🟢", cat:"shopping", steps:4, difficulty:"easy",
+    desc:"네이버 앱 → 내정보 → 구독 → 네이버 플러스 → 해지. 당월 혜택은 만료까지 유지.",
+    url:"https://help.naver.com/service/5603/contents/18131?lang=ko" },
+  { name:"카카오 이모티콘 플러스", icon:"💬", cat:"shopping", steps:4, difficulty:"easy",
+    desc:"카카오톡 → 더보기 → 이모티콘 → 이모티콘 플러스 → 구독 해지.",
+    url:"https://cs.kakao.com/helps?category=587&locale=ko&service=9" },
+  { name:"11번가 우주패스", icon:"🌌", cat:"shopping", steps:3, difficulty:"medium",
+    desc:"마이11번가 → 우주패스 → 이용권 해지. SK텔레콤 결합상품 여부 먼저 확인.",
+    url:"https://help.11st.co.kr/app/main/articleAnswer/1042" },
+  { name:"알라딘 구독", icon:"🧞", cat:"shopping", steps:3, difficulty:"easy",
+    desc:"My알라딘 → 정기배송/구독 → 구독 해지. 도서 정기구독과 전자책 구독 별도 관리.",
+    url:"https://www.aladin.co.kr/cs/cs_faq.aspx" },
 
   // 뉴스/콘텐츠
-  {
-    name: "조선일보 디지털",
-    icon: "📰",
-    cat: "news",
-    desc: "마이페이지 → 구독 관리 → 구독 해지. 고객센터 전화 필요한 경우도 있음.",
-    steps: 4,
-    difficulty: "medium",
-    url: "https://www.chosun.com/mypage"
-  },
-  {
-    name: "한겨레 디지털",
-    icon: "📄",
-    cat: "news",
-    desc: "마이페이지 → 구독 → 해지 신청. 이메일 확인 필수.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.hani.co.kr/arti/mypage"
-  },
-  {
-    name: "뉴욕타임스",
-    icon: "🗽",
-    cat: "news",
-    desc: "Account → Manage Account → Cancel Subscription. 영문 사이트 이용 필요.",
-    steps: 4,
-    difficulty: "medium",
-    url: "https://myaccount.nytimes.com/seg"
-  },
-  {
-    name: "브런치 구독",
-    icon: "✍️",
-    cat: "news",
-    desc: "브런치 무료 서비스로 구독 개념과 다름. 카카오 계정 연동 해제로 탈퇴 가능.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://brunch.co.kr/@manage/settings"
-  },
+  { name:"조선일보 디지털", icon:"📰", cat:"news", steps:4, difficulty:"medium",
+    desc:"마이페이지 → 구독 관리 → 구독 해지. 일부의 경우 고객센터(1588-5454) 전화 필요.",
+    url:"https://cs.chosun.com/" },
+  { name:"한겨레 디지털", icon:"📄", cat:"news", steps:3, difficulty:"easy",
+    desc:"마이페이지 → 구독 → 해지 신청. 해지 완료 이메일 확인 필수.",
+    url:"https://www.hani.co.kr/arti/member/member_general/1039879.html" },
+  { name:"뉴욕타임스", icon:"🗽", cat:"news", steps:4, difficulty:"medium",
+    desc:"Account → Manage Account → Cancel Subscription. 영문 사이트에서 진행.",
+    url:"https://help.nytimes.com/hc/en-us/articles/900003389366" },
 
   // 게임
-  {
-    name: "PlayStation Plus",
-    icon: "🎮",
-    cat: "game",
-    desc: "PlayStation 계정 → 구독 → PlayStation Plus → 자동 갱신 끄기.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.playstation.com/ko-kr/my-playstation/subscriptions/"
-  },
-  {
-    name: "Xbox Game Pass",
-    icon: "🟩",
-    cat: "game",
-    desc: "Xbox 계정 → 서비스 및 구독 → Game Pass → 구독 취소.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://account.microsoft.com/services"
-  },
-  {
-    name: "닌텐도 온라인",
-    icon: "🎯",
-    cat: "game",
-    desc: "닌텐도 계정 → 닌텐도 스위치 온라인 → 자동 갱신 해제. 기기에서도 설정 가능.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://accounts.nintendo.com/profile/edit"
-  },
-  {
-    name: "YouTube Premium",
-    icon: "▶️",
-    cat: "streaming",
-    desc: "YouTube → 프로필 → 유료 멤버십 → 멤버십 해지. 해지 후 광고 재개.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.youtube.com/paid_memberships"
-  },
+  { name:"PlayStation Plus", icon:"🎮", cat:"game", steps:3, difficulty:"easy",
+    desc:"PlayStation 계정 → 구독 → PS Plus → 자동 갱신 끄기.",
+    url:"https://www.playstation.com/ko-kr/support/subscriptions/cancel-ps-plus/" },
+  { name:"Xbox Game Pass", icon:"🟩", cat:"game", steps:3, difficulty:"easy",
+    desc:"Xbox 계정 → 서비스 및 구독 → Game Pass → 구독 취소.",
+    url:"https://support.microsoft.com/ko-kr/account-billing/xbox-%EA%B5%AC%EB%8F%85-%EC%B7%A8%EC%86%8C-b800a5ab-5d93-42e6-82eb-55c4ccef38bd" },
+  { name:"닌텐도 온라인", icon:"🎯", cat:"game", steps:3, difficulty:"easy",
+    desc:"닌텐도 계정 → 닌텐도 스위치 온라인 → 자동 갱신 해제.",
+    url:"https://www.nintendo.com/ko-kr/hardware/switch/online-service/faq/" },
 
-  // 디자인/크리에이티브
-  {
-    name: "미리캔버스",
-    icon: "🎨",
-    cat: "design",
-    desc: "나의 정보 → 결제 정보 설정 → '유료 요금제를 해지하시려면 여기를 클릭하세요' 링크 클릭 후 사유 선택.",
-    steps: 4,
-    difficulty: "easy",
-    url: "https://www.miricanvas.com/billing"
-  },
-  {
-    name: "망고보드",
-    icon: "🥭",
-    cat: "design",
-    desc: "마이페이지 → 구독 관리 → 구독 해지. 해지 전 다운로드한 파일은 유지됨.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.mangoboard.net/mypage"
-  },
-  {
-    name: "타입폼 (Typeform)",
-    icon: "📋",
-    cat: "design",
-    desc: "Account → Billing → Cancel plan. 무료 플랜으로 다운그레이드되며 응답 수 제한.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://admin.typeform.com/account/billing"
-  },
-  {
-    name: "Vrew",
-    icon: "🎬",
-    cat: "design",
-    desc: "내 계정 → 구독 관리 → 구독 해지. 보이저엑스 계정에서 처리.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://vrew.voyagerx.com/ko/subscription"
-  },
-  {
-    name: "클립챔프 (Clipchamp)",
-    icon: "✂️",
-    cat: "design",
-    desc: "Microsoft 계정 → 서비스 및 구독에서 해지. Microsoft 365와 별도 관리.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://account.microsoft.com/services"
-  },
+  // 디자인
+  { name:"미리캔버스", icon:"🎨", cat:"design", steps:4, difficulty:"easy",
+    desc:"나의 정보 → 결제 정보 설정 → '유료 요금제를 해지하시려면 여기를 클릭하세요' 클릭 후 사유 선택.",
+    url:"https://help.miricanvas.com/hc/ko/articles/900004212886" },
+  { name:"망고보드", icon:"🥭", cat:"design", steps:3, difficulty:"easy",
+    desc:"마이페이지 → 구독 관리 → 구독 해지. 해지 전 다운로드한 파일은 유지.",
+    url:"https://www.mangoboard.net/support/faq.do" },
+  { name:"Vrew", icon:"🎬", cat:"design", steps:3, difficulty:"easy",
+    desc:"앱 내 계정 → 구독 관리 → 구독 해지. Vrew 공식 사이트에서도 처리 가능.",
+    url:"https://vrew.ai/ko/support/" },
+  { name:"Canva Pro", icon:"🖌️", cat:"design", steps:3, difficulty:"easy",
+    desc:"계정 설정 → 청구 및 플랜 → 구독 취소. 해지 후 무료 버전으로 전환.",
+    url:"https://www.canva.com/help/cancel-subscription/" },
+  { name:"타입폼 (Typeform)", icon:"📋", cat:"design", steps:3, difficulty:"easy",
+    desc:"Account → Billing → Cancel plan. 무료 플랜은 응답 수 제한 있음.",
+    url:"https://www.typeform.com/help/a/cancel-your-typeform-subscription-360029149112/" },
 
   // 독서/교육
-  {
-    name: "밀리의서재",
-    icon: "📚",
-    cat: "edu",
-    desc: "앱 → 관리 → 구독 관리 → 자동결제 관리 → 해지 신청. 잔여 기간 이용 가능.",
-    steps: 4,
-    difficulty: "easy",
-    url: "https://www.millie.co.kr/v3/settings"
-  },
-  {
-    name: "윌라 오디오북",
-    icon: "🎙️",
-    cat: "edu",
-    desc: "마이윌라 → 윌라 멤버십 이용중 → 해지 신청. 남은 기간 서비스 계속 이용 가능.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.welaaa.com/mypage"
-  },
-  {
-    name: "클래스101+",
-    icon: "🎓",
-    cat: "edu",
-    desc: "마이페이지 → 구독 관리 → 구독 해지. 연간 구독 중도 해지 시 환불 정책 확인 필수.",
-    steps: 4,
-    difficulty: "medium",
-    url: "https://class101.net/ko/settings/subscription"
-  },
-  {
-    name: "콜로소 (Coloso)",
-    icon: "🖼️",
-    cat: "edu",
-    desc: "마이페이지 → 구독 → 자동결제 해지. 단건 강의 구매와 구독 상품 별도 관리.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://coloso.co.kr/mypage"
-  },
-  {
-    name: "탈잉",
-    icon: "📖",
-    cat: "edu",
-    desc: "마이페이지 → 이용권 관리에서 해지. 클래스 단건과 구독 멤버십 구분 필요.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://taling.me/mypage"
-  },
-  {
-    name: "스터디파이",
-    icon: "📝",
-    cat: "edu",
-    desc: "계정 설정 → 결제 및 구독 → 구독 취소. 고객센터 문의로도 해지 가능.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.studypie.co.kr/mypage"
-  },
-  {
-    name: "산타토익 (SANTA)",
-    icon: "🎅",
-    cat: "edu",
-    desc: "MY → 이용권 관리 → 이용권 해지. 이용 중인 이용권 만료 후 자동해지됨.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://aitutorsanta.com/mypage"
-  },
+  { name:"밀리의서재", icon:"📚", cat:"edu", steps:4, difficulty:"easy",
+    desc:"앱 → 관리 → 구독 관리 → 자동결제 관리 → 해지 신청. 잔여 기간 계속 이용 가능.",
+    url:"https://www.millie.co.kr/v3/customer/faq/871" },
+  { name:"윌라 오디오북", icon:"🎙️", cat:"edu", steps:3, difficulty:"easy",
+    desc:"마이윌라 → 윌라 멤버십 이용중 → 해지 신청. 해지 후 남은 기간 서비스 이용 가능.",
+    url:"https://www.welaaa.com/support/faq" },
+  { name:"클래스101+", icon:"🎓", cat:"edu", steps:4, difficulty:"medium",
+    desc:"마이페이지 → 구독 관리 → 구독 해지. 연간 구독 중도 해지 시 환불 정책 꼭 확인.",
+    url:"https://docs.channel.io/classmate/ko/articles/%ED%81%B4%EB%9E%98%EC%8A%A4101-%ED%99%98%EB%B6%88-%EC%8B%A0%EC%B2%AD-%EB%B0%A9%EB%B2%95-feea2a4e" },
+  { name:"콜로소 (Coloso)", icon:"🖼️", cat:"edu", steps:3, difficulty:"easy",
+    desc:"마이페이지 → 구독 → 자동결제 해지. 단건 강의 구매와 구독 상품 별도 관리.",
+    url:"https://coloso.co.kr/support/faq" },
+  { name:"탈잉", icon:"📖", cat:"edu", steps:3, difficulty:"easy",
+    desc:"마이페이지 → 이용권 관리에서 해지. 클래스 단건 구매와 구독 멤버십 구분 필요.",
+    url:"https://taling.me/support/faqs" },
+  { name:"산타토익 (SANTA)", icon:"🎅", cat:"edu", steps:3, difficulty:"easy",
+    desc:"MY → 이용권 관리 → 이용권 해지. 이용 기간 만료까지 계속 사용 가능.",
+    url:"https://aitutorsanta.com/support" },
 
-  // 생산성/업무
-  {
-    name: "슬랙 (Slack) Pro",
-    icon: "💼",
-    cat: "productivity",
-    desc: "워크스페이스 설정 → 청구 → 플랜 변경 → 무료로 다운그레이드. 관리자 권한 필요.",
-    steps: 4,
-    difficulty: "medium",
-    url: "https://slack.com/intl/ko-kr/help/articles/203759613"
-  },
-  {
-    name: "노션 팀플랜",
-    icon: "📒",
-    cat: "productivity",
-    desc: "Settings → Plans → Downgrade. 워크스페이스 오너만 플랜 변경 가능.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.notion.so/billing"
-  },
-  {
-    name: "Zoom Pro",
-    icon: "📹",
-    cat: "productivity",
-    desc: "계정 관리 → 청구 → 구독 취소. 해지 후 40분 제한 무료 플랜으로 전환.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://zoom.us/billing"
-  },
-  {
-    name: "그리고 (Gringo)",
-    icon: "📅",
-    cat: "productivity",
-    desc: "마이페이지 → 구독 관리에서 해지. 국내 일정/업무 관리 툴.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://gringo.work/mypage"
-  },
-  {
-    name: "라이너 (Liner)",
-    icon: "🖊️",
-    cat: "productivity",
-    desc: "Settings → Subscription → Cancel subscription. 해지 후 무료 플랜 전환.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://getliner.com/settings"
-  },
+  // 생산성
+  { name:"슬랙 (Slack) Pro", icon:"💼", cat:"productivity", steps:4, difficulty:"medium",
+    desc:"워크스페이스 설정 → 청구 → 플랜 변경 → 무료로 다운그레이드. 관리자 권한 필요.",
+    url:"https://slack.com/intl/ko-kr/help/articles/203759613" },
+  { name:"Zoom Pro", icon:"📹", cat:"productivity", steps:3, difficulty:"easy",
+    desc:"계정 관리 → 청구 → 구독 취소. 해지 후 40분 제한 무료 플랜으로 전환.",
+    url:"https://support.zoom.com/hc/ko/articles/4416463840397" },
+  { name:"라이너 (Liner)", icon:"🖊️", cat:"productivity", steps:3, difficulty:"easy",
+    desc:"Settings → Subscription → Cancel subscription. 해지 후 무료 플랜 전환.",
+    url:"https://support.getliner.com/hc/ko" },
+  { name:"Notion (팀플랜)", icon:"📒", cat:"productivity", steps:3, difficulty:"easy",
+    desc:"Settings → Plans → Downgrade. 워크스페이스 오너만 플랜 변경 가능.",
+    url:"https://www.notion.so/help/billing-and-plans" },
 
-  // 건강/피트니스
-  {
-    name: "캐시워크",
-    icon: "🚶",
-    cat: "health",
-    desc: "마이 → 캐시워크 멤버십 → 멤버십 해지. 무료 앱이지만 유료 멤버십 별도 해지.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://cashwalk.io/mypage"
-  },
-  {
-    name: "눔 (Noom)",
-    icon: "🥗",
-    cat: "health",
-    desc: "설정 → 구독 → 구독 취소. 웹/앱 모두 가능, 취소 후 확인 이메일 필수 보관.",
-    steps: 4,
-    difficulty: "medium",
-    url: "https://www.noom.com/subscription/cancel"
-  },
-  {
-    name: "알라딘 구독",
-    icon: "🧞",
-    cat: "shopping",
-    desc: "My알라딘 → 정기배송/구독 → 구독 해지. 도서 정기구독과 전자책 구독 별도 관리.",
-    steps: 3,
-    difficulty: "easy",
-    url: "https://www.aladin.co.kr/mypage"
-  },
-];
+  // 건강
+  { name:"눔 (Noom)", icon:"🥗", cat:"health", steps:4, difficulty:"medium",
+    desc:"설정 → 구독 → 구독 취소. 취소 후 확인 이메일 반드시 보관.",
+    url:"https://support.noom.com/hc/ko/articles/360033893231" },
+  { name:"캐시워크", icon:"🚶", cat:"health", steps:3, difficulty:"easy",
+    desc:"마이 → 캐시워크 멤버십 → 멤버십 해지. 무료 앱이지만 유료 멤버십 별도 해지 필요.",
+    url:"https://cashwalk.io/app/faq" },
+]
+
 
 function getDifficultyDots(d) {
   const levels = { easy: 1, medium: 2, hard: 3 };
