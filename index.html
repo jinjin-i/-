@@ -116,6 +116,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://ads-partners.coupang.com/g.js"></script>
 <style>
   :root {
     --bg: #0a0a0f;
@@ -844,26 +845,24 @@
 <!-- 하단 고정 쿠팡파트너스 광고 -->
 <div class="sticky-ad" id="stickyAd">
   <span class="ad-label">AD</span>
-  <div class="ad-carousel-wrap" id="coupangAdWrap"></div>
+  <div class="ad-carousel-wrap">
+    <script>
+      window.addEventListener('load', function() {
+        if (typeof PartnersCoupang !== 'undefined') {
+          new PartnersCoupang.G({
+            "id": 739808,
+            "trackingCode": "AF6132783",
+            "subId": null,
+            "template": "carousel",
+            "width": "680",
+            "height": "60"
+          });
+        }
+      });
+    </script>
+  </div>
   <button class="ad-close" id="adClose" title="닫기">✕</button>
 </div>
-<script>
-(function() {
-  var s = document.createElement('script');
-  s.src = 'https://ads-partners.coupang.com/g.js';
-  s.onload = function() {
-    new PartnersCoupang.G({
-      "id": 739808,
-      "trackingCode": "AF6132783",
-      "subId": null,
-      "template": "carousel",
-      "width": "680",
-      "height": "60"
-    });
-  };
-  document.getElementById('coupangAdWrap').appendChild(s);
-})();
-</script>
 
 <script>
 const services = [
