@@ -758,6 +758,7 @@
     <button class="filter-btn" data-cat="edu">📚 독서/교육</button>
     <button class="filter-btn" data-cat="productivity">💼 생산성</button>
     <button class="filter-btn" data-cat="health">🏃 건강</button>
+    <button class="filter-btn" data-cat="delivery">🛵 배달앱</button>
   </div>
 </div>
 
@@ -1032,6 +1033,18 @@ const services = [
   { name:"눔 (Noom)", icon:"🥗", cat:"health", steps:4, difficulty:"medium",
     desc:"(E) 서비스 해지” 선택 → (A) 정기결제 취소. 취소 후 확인 이메일 반드시 보관.",
     url:"https://noomkr.typeform.com/to/qaILa0qf" }
+
+  //배달
+  {name:"배달의민족",icon:"🛵",cat:"delivery",steps:3,difficulty:"easy",
+  desc:"앱 → 마이배민 → 배민클럽 → 하단으로 스크롤을 내려 [해지하기]. 무료배달 쿠폰 소진 후 해지 권장.",
+  url:"https://www.baemin.com/"},
+ {name:"요기요",icon:"🍔",cat:"delivery",steps:3,difficulty:"easy",
+  desc:"앱 → 마이요기요 → 요기패스X구독관리 → 하단으로 스크롤을 내려 [해지하기]. 잔여 혜택은 기간 만료까지 유지.",
+  url:"https://www.yogiyo.co.kr/"},
+ {name:"쿠팡이츠",icon:"🥡",cat:"delivery",steps:3,difficulty:"easy",
+  desc:"쿠팡 앱 → 마이페이지 → 톱니바퀴 → 와우 멤버십 → 하단으로 스크롤을 내려 [해지하기]. 로켓와우 해지 시 쿠팡이츠 할인도 함께 종료.",
+  url:"https://www.coupangeats.com/"},
+  
 ]
 
 
@@ -1086,7 +1099,7 @@ function getCatLabel(c) {
     streaming: '🎬 스트리밍', music: '🎵 음악', ai: '🤖 AI',
     software: '💻 소프트웨어', shopping: '🛍 쇼핑', news: '📰 뉴스',
     game: '🎮 게임', cloud: '☁️ 클라우드', design: '🎨 디자인',
-    edu: '📚 독서/교육', productivity: '💼 생산성', health: '🏃 건강'
+    edu: '📚 독서/교육', productivity: '💼 생산성', health: '🏃 건강',delivery: '🛵 배달앱'
   };
   return map[c] || c;
 }
